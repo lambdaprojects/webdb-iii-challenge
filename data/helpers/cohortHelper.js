@@ -2,7 +2,8 @@ const db = require("../dbconfig.js");
 
 module.exports = {
   find,
-  findById
+  findById,
+  create
 };
 
 function find() {
@@ -11,4 +12,8 @@ function find() {
 
 function findById(id) {
   return db("cohorts").where({ id });
+}
+
+function create(cohort) {
+  return db("cohorts").insert(cohort);
 }
