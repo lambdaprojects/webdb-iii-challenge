@@ -34,4 +34,32 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  try {
+    const student = await cohortHelper.update(req.params.id, req.body);
+    res.status(201).json({
+      Message: `Cohort with id ${req.params.id} updated successfully`
+    });
+  } catch (error) {
+    console.log(`:: ERROR IS :: ${error}`);
+    res.status(500).json(error);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const student = await cohortHelper.remove(req.params.id);
+    res
+      .status(201)
+      .json({
+        Message: `Cohort with id ${
+          req.params.id
+        } has been deleted successfully.`
+      });
+  } catch (error) {
+    console.log(`:: ERROR IS :: ${error}`);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

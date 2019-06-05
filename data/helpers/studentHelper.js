@@ -3,7 +3,9 @@ const db = require("../dbconfig.js");
 module.exports = {
   find,
   findById,
-  create
+  create,
+  update,
+  remove
 };
 
 function find() {
@@ -16,4 +18,16 @@ function findById(id) {
 
 function create(student) {
   return db("students").insert(student);
+}
+
+function update(id, student) {
+  return db("students")
+    .where({ id })
+    .update(student);
+}
+
+function remove(id) {
+  return db("students")
+    .where({ id })
+    .del();
 }
