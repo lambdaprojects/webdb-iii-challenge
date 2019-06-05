@@ -49,11 +49,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const student = await studentHelper.remove(req.params.id);
-    res
-      .status(201)
-      .json({
-        Message: `Student with id ${req.params.id} deleted successfully.`
-      });
+    res.status(201).json({
+      Message: `Student with id ${req.params.id} deleted successfully.`
+    });
   } catch (error) {
     console.log(`:: ERROR IS :: ${error}`);
     res.status(500).json(error);

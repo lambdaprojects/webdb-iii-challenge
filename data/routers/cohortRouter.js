@@ -49,13 +49,19 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const student = await cohortHelper.remove(req.params.id);
-    res
-      .status(201)
-      .json({
-        Message: `Cohort with id ${
-          req.params.id
-        } has been deleted successfully.`
-      });
+    res.status(201).json({
+      Message: `Cohort with id ${req.params.id} has been deleted successfully.`
+    });
+  } catch (error) {
+    console.log(`:: ERROR IS :: ${error}`);
+    res.status(500).json(error);
+  }
+});
+
+router.get("/:id/students", async (req, res) => {
+  try {
+    const students = await cohortHelper.getStudentsByCohortId(req.params.id);
+    res.status(201).json(students);
   } catch (error) {
     console.log(`:: ERROR IS :: ${error}`);
     res.status(500).json(error);
