@@ -14,4 +14,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const cohort = await cohortHelper.findById(req.params.id);
+    res.status(201).json(cohort);
+  } catch (error) {
+    console.log(`:: ERROR :: ${error}`);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

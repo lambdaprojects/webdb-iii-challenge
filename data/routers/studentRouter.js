@@ -14,4 +14,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const student = await studentHelper.findById(req.params.id);
+    res.status(201).json(student);
+  } catch (error) {
+    console.log(`:: ERROR IS :: ${error}`);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;
