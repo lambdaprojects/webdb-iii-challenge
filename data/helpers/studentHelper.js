@@ -13,7 +13,12 @@ function find() {
 }
 
 function findById(id) {
-  return db("students").where({ id });
+  //return db("students").where({ id });
+  return db
+    .select(["students.id", "students.name", "cohorts.name as cohort"])
+    .from("students")
+    .innerJoin("cohorts", "students.cohort_id", "cohorts.id")
+    .where("students.id", 2);
 }
 
 function create(student) {
