@@ -5,7 +5,8 @@ const config = {
   connection: {
     filename: "./data/lambda.db3"
   },
-  useNullAsDefault: true
+  useNullAsDefault: true,
+  seeds: { directory: "./data/seeds" }
 };
 
 module.exports = config;
