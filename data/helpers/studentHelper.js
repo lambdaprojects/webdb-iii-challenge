@@ -18,7 +18,7 @@ function findById(id) {
     .select(["students.id", "students.name", "cohorts.name as cohort"])
     .from("students")
     .innerJoin("cohorts", "students.cohort_id", "cohorts.id")
-    .where("students.id", 2);
+    .where("students.id", id);
 }
 
 function create(student) {
